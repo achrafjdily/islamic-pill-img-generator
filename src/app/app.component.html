@@ -1,5 +1,6 @@
 <div class="flex items-center justify-center h-full">
-    <canvas #canvas *ngIf="file"></canvas>
+    <canvas #canvas class="hidden"></canvas>
+    <img *ngIf="img" [width]="img.width" [height]="img.height" [src]="img.src">
     <label *ngIf="!file" class="flex border-2 border-blue-500 h-1/2 w-1/2 rounded-xl relative" ngFileDrop (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" [ngClass]="{ 'border-solid  bg-gray-200': dragOver , 'border-dashed ' : !dragOver }"
         [options]="options">
         <span class="mx-auto my-auto text-blue-500 font-medium text-lg">Drag Image or click to upload</span>

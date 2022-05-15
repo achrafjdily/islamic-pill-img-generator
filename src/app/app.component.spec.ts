@@ -19,7 +19,6 @@ describe('AppComponent', () => {
   it(`should have as title 'islamic-pill-image-generator'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('islamic-pill-image-generator');
   });
 
   it('should render title', () => {

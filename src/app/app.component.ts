@@ -1,11 +1,17 @@
 import { Component, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { UploadOutput, UploadInput, UploadFile, humanizeBytes, UploaderOptions, UploadStatus } from 'ngx-uploader';
-
+interface ImgElement {
+  src: string;
+  width: number;
+  height: number;
+}
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
+
 export class AppComponent {
   file: UploadFile | null;
   uploadInput: EventEmitter<UploadInput>;
@@ -17,6 +23,7 @@ export class AppComponent {
   logo = new Image();
   footer = new Image();
   @ViewChild('canvas') public canvas!: ElementRef;
+  img!: ImgElement | null;
 
   constructor() {
     this.options = { concurrency: 1, maxUploads: 1, maxFileSize: 1000000 };
@@ -67,6 +74,7 @@ export class AppComponent {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
+    this.img = null;
     this.imgReader.onloadend = (event) => {
       const img = new Image();
       img.src = <string>event.target?.result
@@ -101,6 +109,11 @@ export class AppComponent {
         this.ctx.fillStyle = 'white';
         this.ctx.fillRect(15 + (width / 10) + 15, ((height - (coedHeight + 15)) + (coedHeight / 2.4)), (width - (width / 10) + 30), (coedHeight / 50));
 
+        this.img = {
+          src: this.canvas.nativeElement.toDataURL("image/png"),
+          width: width,
+          height: height
+        }
       }
     }
   }
