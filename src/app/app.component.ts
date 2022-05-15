@@ -24,8 +24,8 @@ export class AppComponent {
     this.uploadInput = new EventEmitter<UploadInput>();
     this.imgReader = new FileReader();
     this.humanizeBytes = humanizeBytes;
-    this.logo.src = "../assets/logo.svg";
-    this.footer.src = "../assets/footer.svg";
+    this.logo.src = "assets/logo.svg";
+    this.footer.src = "assets/footer.svg";
   }
 
   onUploadOutput(output: UploadOutput): void {
